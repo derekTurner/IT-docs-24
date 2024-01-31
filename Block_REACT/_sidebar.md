@@ -1,6 +1,6 @@
 <!-- docs/_sidebar.md -->
 
-* [<B>Home</B>](/)
+* [<B>Home</B>](README.md)
 * [Client Side React](Block_REACT/README.md)
 * [PC Platform Setup](Block_REACT/section_0/setup.md)
 * [Introducing React](Block_REACT/section_1/react_intro.md)

@@ -1,6 +1,6 @@
 <!-- docs/_sidebar.md -->
 
-* [<h1>Home</h1>](/)
+* [<h1>Home</h1>](README.md)
 
 * [Server API](Block_4/README.md)
 * [Express1](Block_4/section_1/express1-dev.md)

@@ -1,6 +1,6 @@
 <!-- docs/_sidebar.md -->
 
-* [<B>Home<B>](/)
+* [<B>Home<B>](README.md)
 * [Javascript Programming](Block_JS/README.md)
 * [Inline javascript](Block_JS/section_1/section_1a.md)
 * [Local script](Block_JS/section_1/section_1b.md)
