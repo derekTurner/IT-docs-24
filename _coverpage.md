@@ -5,9 +5,9 @@
 
 #  <Internet Technologies 2024>
 
-> Preparatory notes.
+> Coding notes.
 
-- Mern Stack
+- Remix Stack
 - Alternative technologies
 
 
