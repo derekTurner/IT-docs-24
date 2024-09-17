@@ -32,7 +32,7 @@ These javasript libraries are drawn from a Content Delivery Network namned [unpk
 
 This provides a rapid download of packages which are held on the node package manager (NPM) site.
 
-Following the link https://unpkg.com/react@18/umd/react.development.js in a browser reveals the react javascript code from the latest version of the library to be supported in this way.  In this case version 18.2.0.
+Following the link https://unpkg.com/react@18/umd/react.development.js in a browser reveals the react javascript code from the latest version of the library to be supported in this way.  In this case version 18.3.1.
 
 ```javascript
 /**
@@ -50,7 +50,7 @@ Following the link https://unpkg.com/react@18/umd/react.development.js in a brow
   (global = global || self, factory(global.React = {}));
 }(this, (function (exports) { 'use strict';
 
-  var ReactVersion = '18.2.0';
+  var ReactVersion = '18.3.1';
 
   // ATTENTION
   // When adding new symbols to this file,
@@ -75,6 +75,15 @@ Following the link https://unpkg.com/react@18/umd/react.development.js in a brow
     if (maybeIterable === null || typeof maybeIterable !== 'object') {
       return null;
     }
+
+    var maybeIterator = MAYBE_ITERATOR_SYMBOL && maybeIterable[MAYBE_ITERATOR_SYMBOL] || maybeIterable[FAUX_ITERATOR_SYMBOL];
+
+    if (typeof maybeIterator === 'function') {
+      return maybeIterator;
+    }
+
+    return null;
+  }
 ...
 ```
 
