@@ -26,20 +26,20 @@ If you are working on a development machine you can use a javascript run time en
 
 If you wish javascript to run on a server, this can be done if a javascript run time is available.
 
-The most popular run time is nodejs.  This is built upon Chrome's V8 javaScript engine.  There is usually a current version (18) and a Long Term Support version (16), the latter is recommended for most users.
+The most popular run time is nodejs.  This is built upon Chrome's V8 javaScript engine.  There is usually a current version (20) and a Long Term Support version (22), the latter is recommended for most users.
 
 ![node versions](images/nodeVersions.png)
 
 
-So I will follow through with node version 18 in these notes.
+So I will follow through with node version 20 in these notes.
 
 As well as node, there are now two alternative javascript run times, [deno](https://deno.land/) and [bun](https://bun.sh/).
 
 Deno has been developed to overcome some of the drawbacks of node, but it is not fully backward compatible with node.
 
-Bun uses the webkit javascript core engine, which is claimed to run faster than V8, it also claims to be backwards compatible with node.  However this is still only at version 0.1.8.
+Bun uses the webkit javascript core engine, which is claimed to run faster than V8, it also claims to be backwards compatible with node. This is at version 1.1.6.
 
-Both of these alternative run times are worthy of investigation, but for the present purpose I will work with the stable node version 18.
+Both of these alternative run times are worthy of investigation, but for the present purpose I will work with the stable node version 20.
 
 Node ia also associated with the package manager [npm](https://www.npmjs.com/) this is a repository which holds thousands of node modules which can be drawn into javascript applications.
 
