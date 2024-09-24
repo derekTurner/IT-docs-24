@@ -99,7 +99,7 @@ Publish the repository.
 
 ![publish](images/Publish.png)
 
-Open this in visual studio code and create a blank file in the folder called dev.md.  You can use this file subsequently to keep notes on your  code development as you go.
+Open this in visual studio code and create a blank file in the folder called notes.md.  You can use this file subsequently to keep notes on your code development as you go.
 
 ![notes](images/notes.png)
 
@@ -118,11 +118,15 @@ Click on Open Folder in Container. This will then open a browser dialog to choos
 Make sure you select the folder itself and not a parent gitHub folder or a file within the folder.
 
 
-On the first time of opening a prompt appears asking what type of container is needed.  Show all definitions and then choose 'Node & Typescript'
+On the first time of opening you are asked where you want to store the configuration, choose the lower option of workspace, then a system file will be placed into the folder which will describe the nature of the folder setup.
+
+![workspace](images/workspace.png)
+
+Then a prompt appears asking what type of container is needed.  Show all definitions and then choose 'Node & Typescript'
 
 ![node and typescript](images/nodeTypescript.png)
 
-Then you are asked to choose a node version, I have accepted the default version 20-bullseye.
+Then you are asked to choose a node version, I have accepted the LTS version 20-bookworm rather than going to the current version.
 
 ![node 20](images/bullseye.png)
 
@@ -130,6 +134,10 @@ Then you are asked to choose a node version, I have accepted the default version
 Then you are asked what additional features you need from a large checklist.  I selected none and pressed ok.
 
 ![additional features](images/addFeatures.png)
+
+Finally you are asked about optional files and I did not select these.
+
+![option dependabot](images/option.png)
 
 The system then takes time to create the container image.  
 
@@ -188,7 +196,7 @@ The node version can be checked by
 >node -v
 
 ```code
-v20.3.1
+v20.8.0
 ```
 
 The typescript version is checked by:
@@ -196,7 +204,7 @@ The typescript version is checked by:
 >tsc -v
 
 ```code
-Version 5.1.6
+Version 5.2.2
 ```
 
 Install vite with
@@ -206,18 +214,25 @@ Install vite with
 This led to a comment inviting an update to npm.
 
 ```
-added 8 packages in 12s
+added 16 packages, and audited 17 packages in 3s
 
 3 packages are looking for funding
   run `npm fund` for details
+
+1 high severity vulnerability
+
+To address all issues, run:
+  npm audit fix
+
+Run `npm audit` for details.
 npm notice 
-npm notice New major version of npm available! 9.6.7 -> 10.1.0
-npm notice Changelog: https://github.com/npm/cli/releases/tag/v10.1.0
-npm notice Run npm install -g npm@10.1.0 to update!
+npm notice New minor version of npm available! 10.2.1 -> 10.8.3
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v10.8.3
+npm notice Run npm install -g npm@10.8.3 to update!
 npm notice 
 ```
 
-Don't update or you will get an unsupported engine message.
+Don't update at this stage.
 
 
 
@@ -226,7 +241,8 @@ Once the loading process has completed a package.json file is crated in the reac
 ```json
 {
   "dependencies": {
-    "vite": "^4.4.4"
+    "react-router-dom": "^6.17.0",
+    "vite": "^4.5.5"
   }
 }
 ```
@@ -237,13 +253,13 @@ Now initialise vite
 
 ```code
 Need to install the following packages:
-  create-vite@4.4.1
+create-vite@5.5.2
 Ok to proceed? (y) 
 ```
 > y
 
 ```code
-? Project name: › react23
+? Project name: › react24
 ```
 
 Select a framework
@@ -274,20 +290,20 @@ Choose typescript
 Project is scaffolded
 
 ```code
-Scaffolding project in /workspaces/reactTS23/react23...
+Scaffolding project in /workspaces/reactTS23/react24...
 
 Done. Now run:
 
-  cd react23
+  cd react24
   npm install
   npm run dev
 ```
 
-The folder react23 has been set up with the basic template code in the src folder.  Any necessary assets are in the public folder.
+The folder react24 has been set up with the basic template code in the src folder.  Any necessary assets are in the public folder.
 
 ![starter structure](images/starterStructure.png)
 
-> cd react23
+> cd react24
 
 
 
@@ -296,50 +312,61 @@ Install the dependancies listed in src/package.json
 **src/package.json**
 ```json
 {
-  "name": "react23",
+ {
+  "name": "react24",
   "private": true,
   "version": "0.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build",
-    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "build": "tsc -b && vite build",
+    "lint": "eslint .",
     "preview": "vite preview"
   },
   "dependencies": {
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
   },
   "devDependencies": {
-    "@types/react": "^18.2.15",
-    "@types/react-dom": "^18.2.7",
-    "@typescript-eslint/eslint-plugin": "^6.0.0",
-    "@typescript-eslint/parser": "^6.0.0",
-    "@vitejs/plugin-react": "^4.0.3",
-    "eslint": "^8.45.0",
-    "eslint-plugin-react-hooks": "^4.6.0",
-    "eslint-plugin-react-refresh": "^0.4.3",
-    "typescript": "^5.0.2",
-    "vite": "^4.4.5"
+    "@eslint/js": "^9.9.0",
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0",
+    "@vitejs/plugin-react": "^4.3.1",
+    "eslint": "^9.9.0",
+    "eslint-plugin-react-hooks": "^5.1.0-rc.0",
+    "eslint-plugin-react-refresh": "^0.4.9",
+    "globals": "^15.9.0",
+    "typescript": "^5.5.3",
+    "typescript-eslint": "^8.0.1",
+    "vite": "^5.4.1"
   }
 }
+
 ```
 
 > npm install
 
 Run the src code on the Vite development server.
 
+Make a minor ajustment to package json adding --host to the script.
 
+```json
+  "scripts": {
+    "dev": "vite --host",
+    "build": "tsc -b && vite build",
+    "lint": "eslint .",
+    "preview": "vite preview"
+  },
+```
 
 > npm run dev
 
 ```code
-  VITE v4.4.9  ready in 5088 ms
+VITE v5.4.7  ready in 902 ms
 
   ➜  Local:   http://localhost:5173/
   ➜  Network: use --host to expose
-  ➜  press h to show help
-
+  ➜  press h + enter to show help
 ```
 
 The output is available to the browser on port 5173.
@@ -436,16 +463,16 @@ Once code has been completed it can be built.  This polls all the javascript int
 
 
 ```code
-> react23@0.0.0 build
-> tsc && vite build
+> react24@0.0.0 build
+> tsc -b && vite build
 
-vite v4.4.9 building for production...
+vite v5.4.7 building for production...
 ✓ 34 modules transformed.
 dist/index.html                   0.46 kB │ gzip:  0.30 kB
-dist/assets/react-35ef61ed.svg    4.13 kB │ gzip:  2.14 kB
-dist/assets/index-d526a0c5.css    1.42 kB │ gzip:  0.74 kB
-dist/assets/index-c7e05d32.js   143.41 kB │ gzip: 46.10 kB
-✓ built in 1.17s
+dist/assets/react-CHdo91hT.svg    4.13 kB │ gzip:  2.14 kB
+dist/assets/index-DiwrgTda.css    1.39 kB │ gzip:  0.72 kB
+dist/assets/index-f40OySzR.js   143.20 kB │ gzip: 46.04 kB
+✓ built in 939ms
 ```
 
 Refresh the Explorer view to see that a new dist folder has been created.
