@@ -490,7 +490,7 @@ Refresh the Explorer view in VSC to see that a new dist folder has been created.
 
 This folder can be copied to a local folder and run on a server such as VSC live server of uploaded to a flat file server online.
 
-Commit code via VScode
+Commit code via VScode or github desktop
 
 ![commit](images/commit.png)
 

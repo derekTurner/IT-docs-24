@@ -2,17 +2,18 @@
 
 Now a simple react Noughts and crosses game can be created.
 
-This follows a [basic tutorial](https://react.dev/learn/tutorial-tic-tac-toe) on the React website and refers to the version by [thomasJonStrup](https://github.com/thomasjonstrup/react-tic-tac-toe/tree/master)
-
-
+This follows a [basic tutorial](https://react.dev/learn/tutorial-tic-tac-toe) on the React website.
 
 I am not following the tutorial through to the very end, which you can. 
 
- There is a very good javascript (not typescript) example of hooks based solution worked through to the end at  ["Tic Tac Toe - with React Hooks"](https://www.freecodecamp.org/news/learn-how-to-build-tic-tac-toe-with-react-hooks/)
-
-This leads the reader through the [scrimba site](https://scrimba.com/scrim/cPkGD8Sm?pl=pgGEGtW)
+ There is a very good tutorial which covers a tic-tac-toe appliccation and uses the MUI css framework to add a little style at  ["How to make Tic-Tac-Toe in React & Typescript Application"](https://beverlybuilds.medium.com/tic-tac-toe-react-typescript-application-4c53cc743279)
 
 
+The vite server serves from the src directory so you can copy the current src directory to src-demo and then edit into the src directory replacing the current contents.
+
+This example will use [styled components](https://styled-components.com/), so inside react 24.
+
+>npm install styled-components
 
 ## Components
 
@@ -55,11 +56,11 @@ function App() {
 export default App;
 ```
 
-Components will be added in a new folder src3/components.
+Components will be added in a new folder src/components.
 
-* src3/components.Game.js will hold the game logic.
-* src3/components.Board.js will hold the playing area
-* src3/components.Square.js will define one playing square
+* src/components.Game.js will hold the game logic.
+* src/components.Board.js will hold the playing area
+* src/components.Square.js will define one playing square
 
 These are initially set up with placeholder text.
 
@@ -72,7 +73,7 @@ const Board = () => <div>Board</div>
 
 export default Board;
 ```
-This uses and arrow function to define the Board, but regular functions will also work just as well.
+This uses an arrow function to define the Board, but regular functions will also work just as well.
 
 **components/Game.tsx**
 ```javascript
@@ -115,7 +116,7 @@ This shows the text 'tic tac toe' and confirms files are correctly imported.
 
 ### Square
 
-The first component to create is the square in components/Square.js.  Using arrow functions in javascript the return could be implicit, but in typescript the return statement cannot be missed out.
+The first component to create is the square in components/Square.tsx.  Using arrow functions in javascript the return could be implicit, but in typescript the return statement cannot be missed out.
 
 The Square is going to recieve a value which is a string and n onClick which is a MouseEvent.
 
@@ -210,36 +211,6 @@ The app should now be viewable, but does nothing yet.
 
 
 ### Style on squares
-
-[Styled components](https://styled-components.com/) will be used to add style to the button.
-
-Before using, stop the development server and check that styled-components are included in your node environment.
-
-Open the root folder of the container react23 in a clean integrated terminal.
-
-I initially installed an older version of stylised components and this is indicated as deprecated.
-
-> $ npm install --save-dev @types/styled-components
-
-Advice in the stylised components [FAQ section] advises the following steps to update the necessary packages to their latest versions.
-
-From within the react23 folder:
-
-> npm install styled-components@^6.0.0 stylis@^4.0.0
-
-> npm uninstall @types/styled-components
-
-
-The dev dependancies in package json are updated.
-```json
-   "dependencies": {
-    "react": "^18.2.0",
-    "react-bootstrap": "^2.8.0",
-    "react-dom": "^18.2.0",
-    "styled-components": "^6.0.0",
-    "stylis": "^4.0.0"
-  },
-```
 
 
 Rather than using the css file for the moment, style can be defined as a constant using JSON object format.
