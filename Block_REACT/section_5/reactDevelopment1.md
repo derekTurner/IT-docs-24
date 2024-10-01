@@ -41,9 +41,9 @@ Bun uses the webkit javascript core engine, which is claimed to run faster than 
 
 Both of these alternative run times are worthy of investigation, but for the present purpose I will work with the stable node version 20.
 
-Node ia also associated with the package manager [npm](https://www.npmjs.com/) this is a repository which holds thousands of node modules which can be drawn into javascript applications.
+Node is also associated with the package manager [npm](https://www.npmjs.com/) this is a repository which holds thousands of node modules which can be drawn into javascript applications.
 
-Node is good, but it relies on installing these small node modules.  If you are careful you should make a distinction between modules which are installed globally, and therefore become part of your base node environment and those which are installed within the node-modules folder of your application.
+Node is good, but it relies on installing many small node modules.  If you are careful you should make a distinction between modules which are installed globally, and therefore become part of your base node environment and those which are installed within the node-modules folder of your application.
 
 Applications may be dependant on different versions of these node modules, so it is essential to be careful with version installation. Node dependencies are an important consideration in getting an application to run. This takes care to manage on a personal machine, but on a multi-user machine could become impracticable.
 
@@ -55,7 +55,7 @@ You could use a number of virtual linux machines to hold separate node environme
 
 I prefer to us lightweight linux based Docker containers to hold isolated node environments.
 
->If after that warning you still want to run node locally on windows you can install node locally but I generally prefer not to.  I suggest you prefer the docker approach as below.
+>If after that warning you still want to run node locally on windows you can install node locally but I generally prefer not to.  I suggest you adopt the docker approach as below.
 
 
 
@@ -74,7 +74,7 @@ Finally Docker can be used to set up containers with fuly developed code ready f
 
 ## Using React/Vite in a Development environment
 
-This is an adaptation of the tutorial [Creating a react app with Vite]](https://blog.openreplay.com/how-to-build-your-react-app-using-vite/) to a docker development system and and the typescript language.  Firstly an environment will be set up and then vite will be used in this environment to run a simple typescript application.
+This is an adaptation of the tutorial [Creating a react app with Vite]](https://blog.openreplay.com/how-to-build-your-react-app-using-vite/) to create a docker development system supporting react and the typescript language.  Before considering react, an environment will be set up and then vite will be used in this environment to run a simple demonstration typescript application.
 
 
 Before starting you will need docker desktop installed and running.  
@@ -89,7 +89,7 @@ Then you will need VScode with the devContainers extension installed.
 
 This will allow any local folder to be run in a docker development container and is an easy way to run with a development environment.
 
-Using github desktop, create a new repository named reactTS23.  This will be your initial working space for react code development.
+Using github desktop, create a new repository named reactTS24.  This will be your initial working space for react code development.
 
 > File|New Reppository or CTRL + N
 
@@ -122,7 +122,7 @@ On the first time of opening you are asked where you want to store the configura
 
 ![workspace](images/workspace.png)
 
-Then a prompt appears asking what type of container is needed.  Show all definitions and then choose 'Node & Typescript'
+Then a prompt appears asking what type of container is needed.  Click on "Show all template definitions and then choose 'Node & Typescript'
 
 ![node and typescript](images/nodeTypescript.png)
 
@@ -196,7 +196,7 @@ The node version can be checked by
 >node -v
 
 ```code
-v20.8.0
+v20.17.0
 ```
 
 The typescript version is checked by:
@@ -204,7 +204,7 @@ The typescript version is checked by:
 >tsc -v
 
 ```code
-Version 5.2.2
+Version 5.6.2
 ```
 
 Install vite with
@@ -241,8 +241,7 @@ Once the loading process has completed a package.json file is crated in the reac
 ```json
 {
   "dependencies": {
-    "react-router-dom": "^6.17.0",
-    "vite": "^4.5.5"
+    "vite": "^5.4.8"
   }
 }
 ```
@@ -290,7 +289,7 @@ Choose typescript
 Project is scaffolded
 
 ```code
-Scaffolding project in /workspaces/reactTS23/react24...
+Scaffolding project in /workspaces/reactTS24/react24...
 
 Done. Now run:
 
@@ -303,6 +302,8 @@ The folder react24 has been set up with the basic template code in the src folde
 
 ![starter structure](images/starterStructure.png)
 
+Note that there is a package.json file outside the react 24 project which we used to install vite.  There is a second package.json file inside the project react 24.
+
 > cd react24
 
 
@@ -312,7 +313,6 @@ Install the dependancies listed in src/package.json
 **src/package.json**
 ```json
 {
- {
   "name": "react24",
   "private": true,
   "version": "0.0.0",
@@ -341,31 +341,40 @@ Install the dependancies listed in src/package.json
     "vite": "^5.4.1"
   }
 }
-
 ```
+Note that you are working now inside the react24 project.
 
 > npm install
 
-Run the src code on the Vite development server.
+```code
+added 193 packages, and audited 194 packages in 2m
 
-Make a minor ajustment to package json adding --host to the script.
+41 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+```
+
+Before running the src code on the Vite development server.
+
+Make a minor ajustment to src/package.json adding --host to the script.
 
 ```json
   "scripts": {
     "dev": "vite --host",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview --host"
   },
 ```
 
 > npm run dev
 
 ```code
-VITE v5.4.7  ready in 902 ms
+ VITE v5.4.8  ready in 550 ms
 
   ➜  Local:   http://localhost:5173/
-  ➜  Network: use --host to expose
+  ➜  Network: http://172.17.0.2:5173/
   ➜  press h + enter to show help
 ```
 
@@ -466,16 +475,16 @@ Once code has been completed it can be built.  This polls all the javascript int
 > react24@0.0.0 build
 > tsc -b && vite build
 
-vite v5.4.7 building for production...
+vite v5.4.8 building for production...
 ✓ 34 modules transformed.
 dist/index.html                   0.46 kB │ gzip:  0.30 kB
-dist/assets/react-CHdo91hT.svg    4.13 kB │ gzip:  2.14 kB
+dist/assets/react-CHdo91hT.svg    4.13 kB │ gzip:  2.05 kB
 dist/assets/index-DiwrgTda.css    1.39 kB │ gzip:  0.72 kB
-dist/assets/index-f40OySzR.js   143.20 kB │ gzip: 46.04 kB
-✓ built in 939ms
+dist/assets/index-f40OySzR.js   143.20 kB │ gzip: 46.06 kB
+✓ built in 807ms
 ```
 
-Refresh the Explorer view to see that a new dist folder has been created.
+Refresh the Explorer view in VSC to see that a new dist folder has been created.
 
 ![dist](images/dist.png)
 
