@@ -16,10 +16,15 @@ On this page you will find a 'try it script', a link to a more detailed guide an
 JSONPlaceholder comes with a set of 6 common resources:
 
 /posts	100 posts
+
 /comments	500 comments
+
 /albums	100 albums
+
 /photos	5000 photos
+
 /todos	200 todos
+
 /users	10 users
 
 
@@ -49,9 +54,17 @@ For the user list there is a  [ tutorial on Pusher.com](https://pusher.com/tutor
 
 ## Reading user API
 
-I could carry on running with the development environment from the last section, but instead I will start a new one.
+Save all the previous SRC folders in react24 as "SRC-name" and leave a copy of "SRC" which can be edited to this section.  The renamed folders will be ignored and the new code will be served from the "SRC" directory.  If at any time you want to look back at old code, save the current "SRC" with an alternative name and re-name the old folder back to "SRC".
 
-Create a new working folder in react23 and point index.html towards it.
+If you weree setting out on a larger project, you should create a new container from scratch to work in, but here I just rename folders.
+
+Create a new working folder in react24 and point index.html towards it.
+
+![source folder](images\srcFolder.png)
+
+A minor renaming of the title keeps the display relevant.
+
+**react24/index.txt** 
 
 ```html
 <!doctype html>
@@ -60,29 +73,29 @@ Create a new working folder in react23 and point index.html towards it.
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite + React + TS</title>
+    <title>Consume API</title>
   </head>
   <body>
     <div id="root"></div>
-    <script type="module" src="/src4/main.tsx"></script>
+    <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
 ```
 
 ### Styling with Bootstrap
 
-Copy the standard src files across from src1
+The new SRC folder has the standard files from the last project which can be deleted or edited as required.  Remove helper.ts and components folder from previous project.
 
 ![start structure](images/structurestart.png)
 
 To add style to the app [React Bootstrap](https://react-bootstrap.github.io/) can be used.
 
-From the react23 folder
+From the react24 folder
 
 > npm install react-bootstrap bootstrap
 
 
-Import bootstrap CSS  to the  beginning of **src4/main.tsx**
+Import bootstrap CSS  to the  beginning of **src/main.tsx**
 
 ```javascript
 import 'bootstrap/dist/css/bootstrap.css';
@@ -95,10 +108,10 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <App />
   </React.StrictMode>,
-)
+);
 ```
 
-Returning to **App.tsx** add the code to render a card using the bootstrap classes: [card, card-body etc](https://react-bootstrap.github.io/docs/components/cards)
+Returning to **App.tsx** delete previous code and add the code to render a card using the bootstrap classes: [card, card-body etc](https://react-bootstrap.github.io/docs/components/cards)
 
 **App.tsx**
 ```javascript
@@ -165,7 +178,7 @@ This shows the JSON data for user id 1 and this is typical of the REST format.
 }
 ```
 
-To separate code functions create a new file **List.tsx** in the components folder.  Modify App.tsx to refer to this.
+To separate code functions create a new empty file **src/components/List.tsx** in the components folder.  Modify App.tsx to refer to this.
 
 **App.tsx**
 ```javascript
@@ -181,13 +194,15 @@ function App() {
 export default App;
 ```
 
-Make sure that the axios library is abailable from the react23 folder
+Since List.tsx is empty you will see an error at this stage.
+
+Make sure that the axios library is abailable from the react24 folder
 
 > npm install axios
 
 [Axios](https://axios-http.com/docs/intro) is a library to fetch data from an API, it presents the retreived data as a Json object.
 
-Add this to the imports in **src4/components.List.tsx** 
+Add this to the imports in **src/components/List.tsx** 
 
 ```javascript
 import React, {useState, useEffect} from 'react';
@@ -332,20 +347,24 @@ function List() {
   
   export default List;
 ```
+The resulting list is shown on cards.
 
 ![full list](images/full%20list.png)
 
 
+
 ### Challenge
 
-1. Reconfigure this code to show a more complete representation of the user data.
+1. Add some style to the display [Card Styles](https://react-bootstrap.github.io/docs/components/cards#card-styles)
 
-2. Write a version which allows a user to be chosen by id.
+2. Reconfigure this code to show a more complete representation of the user data.
 
-3. Look at an alternative tipicode dataset and create a display for that.
+3. Write a version which allows a user to be chosen by id.
 
-4. [Produce your own data set on Github](https://my-json-server.typicode.com/) and use this to generate data on the app
+4. Look at an alternative tipicode dataset and create a display for that.
+   
+5. Use postman to create a mock API and retrieve information from that.  
 
-5. Experiment with bootstrap extend the repetoire of formatting structures which you can use.
+6. Experiment with bootstrap extend the repetoire of formatting structures which you can use.
   
-6. Display an image from an address stored in an API
+7. Display an image from an address stored in an API

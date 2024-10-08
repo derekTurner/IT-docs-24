@@ -38,6 +38,8 @@ normal text
 normal text
 </pre>
 
+---
+
 # Heading 1
 
 normal text
@@ -49,6 +51,8 @@ normal text
 ### Heading 3
 
 normal text
+
+---
 
 ### Italic and Bold
 
@@ -63,12 +67,15 @@ Do not include any space between the asterix and the enclosed text.
 *Single asterix italicices***Double asterix enboldens**
 </pre>
 
+---
+
 *Single asterix italicices*
 
 **Double asterix enboldens**
 
 *Single asterix italicices***Double asterix enboldens**
 
+---
  
 ### Lists
 
@@ -98,6 +105,8 @@ Not like this!
 3. Third item
 </pre>
 
+---
+
 1. First item  
 2. Second item
 3. Third item
@@ -117,6 +126,8 @@ Not like this!
 1. First item  
 2. Second item 
 3. Third item
+
+---
 
 An unordered list is easy to create, but there are options on the symbol to use to generate the bullet point. I usually prefer to use the asterix. You should not care at this point whether the bulet points are round or square, that is a formatting aspect to consider later.
 
@@ -138,6 +149,8 @@ or
 + Third item
 </pre>
 
+---
+
 - First item
 - Second item
 - Third item
@@ -154,6 +167,7 @@ or
 + Second item
 + Third item
 
+---
 
 ### Blockquote
 
@@ -231,11 +245,14 @@ Information can be organised into tables.  White space can be used to impropve t
 | Paragraph   | Text        |
 </pre>
 
+---
+
 | Syntax      | Description |
 | ----------- | ----------- |
 | Header      | Title       |
 | Paragraph   | Text        |
 
+---
 
 You will find other elements of extended syntax in the markdown guide and other references.  If you want to use these you will need to try them out in visual studio code to see what works and what does not.
 

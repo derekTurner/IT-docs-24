@@ -12,16 +12,20 @@
 * [Challenge solution 2](Block_REACT/section_4/maintainingStateChallengeClass.md)
 * [React/Vite/Docker](Block_REACT/section_5/reactDevelopment1.md)
 * [Tic-Tac-Toe](Block_REACT/section_6/tictactoe.md)
-<!--* 
 * [Consume API](Block_REACT/section_7/consumejsonapi.md)
+* [Markdown](Block_REACT/section_10/markdown.md)
+* [Svelte Presentation](Block_REACT/section_11/SveltePresentation.md)
+* [Svelte Tutorial](Block_REACT/section_12/SvelteTutorial.md)
+<!--* 
+
 * [Reactnative consumes JSON API](Block_REACT/section_8/reactNative.md)
 
-* [Build ReactNative on docker](Block_REACT/section_9/ReactNativedocker.md)
-* [Markdown](Block_REACT/section_10/markdown.md)
+
 * [Svelte Presentation](Block_REACT/section_11/SveltePresentation.md)
 * [Svelte Tutorial](Block_REACT/section_12/SvelteTutorial.md)
 * [React Markdown](Block_REACT/section_13/Router.md)
 * [Github pages](Block_REACT/section_14/githubpages.md)
+* [Build ReactNative on docker](Block_REACT/section_9/ReactNativedocker.md)
 <!--
 
 
