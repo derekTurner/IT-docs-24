@@ -4,7 +4,7 @@
 
 The object here is to demonstrate that Svelte can be used as an effective alternative to React to display the list of users from the typicode API.  You can be the judge of whether the syntax is more or less comfortable to work with.  If you want to go further you can extend to read from other typicode API content.
 
-To start off I will make a new github repository named SvelteTS23 and clone this to my local machine.
+To start off I will make a new github repository named SvelteTS24 and clone this to my local machine.
 
 Within visual studio code open this folder in a container which is for node and typescript.
 

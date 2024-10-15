@@ -6,25 +6,25 @@ The markdown files will be the svelte presentation and markdown descriptions, bu
 
 ### Setup
 
-This app will use the [react router version 6](https://reactrouter.com/en/main) to navigate between views of different components so to setup return the the ReactTS23 folder and add the router so that it will be available for all react pages on the platform.
+This app will use the [react router version 6](https://reactrouter.com/en/main) to navigate between views of different components so to setup return the the ReactTS24 folder and add the router so that it will be available for all react pages on the platform.
 
 > npm install react-router-dom
 
 > A utility which will be useful to allow bootstrap navigation to be used with the react-router-dom should also be installed.
 
-> npm install rect-router-bootstrap
+> npm install react-router-bootstrap
 
 Now add markdown handling, just for this particular project.
 
-> cd react23
+> cd react24
  
 > npm install react-markdown --save
 
 
 
-> ### Routing
->
-> The addition of the react router enbles the app to move between views of multiple components.  One component will be for the display of the presentation file, and this willo be the home page.  The other component will be for the display of the tutorial.
+### Routing
+
+ The addition of the react router enbles the app to move between views of multiple components.  One component will be for the display of the presentation file, and this will be the home page.  The other component will be for the display of the tutorial.
 
 The routes for navigation will be separated into a component file components/Routes.tsx.  
 

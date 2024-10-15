@@ -13,33 +13,15 @@
 * [React/Vite/Docker](Block_REACT/section_5/reactDevelopment1.md)
 * [Tic-Tac-Toe](Block_REACT/section_6/tictactoe.md)
 * [Consume API](Block_REACT/section_7/consumejsonapi.md)
-* [Markdown](Block_REACT/section_10/markdown.md)
-* [Svelte Presentation](Block_REACT/section_11/SveltePresentation.md)
-* [Svelte Tutorial](Block_REACT/section_12/SvelteTutorial.md)
-<!--* 
-
-* [Reactnative consumes JSON API](Block_REACT/section_8/reactNative.md)
-
-
-* [Svelte Presentation](Block_REACT/section_11/SveltePresentation.md)
-* [Svelte Tutorial](Block_REACT/section_12/SvelteTutorial.md)
-* [React Markdown](Block_REACT/section_13/Router.md)
-* [Github pages](Block_REACT/section_14/githubpages.md)
-* [Build ReactNative on docker](Block_REACT/section_9/ReactNativedocker.md)
+* [Markdown](Block_REACT/section_8/markdown.md)
+* [Svelte Presentation](Block_REACT/section_9/SveltePresentation.md)
+* [Svelte Tutorial](Block_REACT/section_10/SvelteTutorial.md)
+<!--Week 5  -->
+* [React Markdown](Block_REACT/section_11/Router.md)
+* [Github pages](Block_REACT/section_12/githubpages.md)
+ 
+<!--Week 6  -->
 <!--
-
-
-
-
-* [Build ReactNative on docker](Block_REACT/section_9/ReactNativedocker.md)
-* [Sample Database](Block_REACT/section_REACT0/section_REACT0.md)
-
-* [Markdown](Block_REACT/section_REACT2/section_REACT2.md)
-
-
-=========================================================
-
-* [<h3>Consume a Postman API</h3>](Block_REACT/section_4/postmanAPI/postmanAPI.md)
-* [<h3>ReactNative</h3>](Block_REACT/section_5/reactNativedocker/ReactNativedocker.md)
-* [<h3>ReactNative - not used</h3>](Block_REACT/section_6/reactNative/ReactNative.md)
+* [Reactnative consumes JSON API](Block_REACT/section_15/reactNative.md)
+* [Build ReactNative on docker](Block_REACT/section_16/ReactNativedocker.md)
 -->
