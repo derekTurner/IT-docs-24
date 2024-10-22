@@ -19,9 +19,6 @@
 <!--Week 5  -->
 * [React Markdown](Block_REACT/section_11/Router.md)
 * [Github pages](Block_REACT/section_12/githubpages.md)
- 
 <!--Week 6  -->
-<!--
-* [Reactnative consumes JSON API](Block_REACT/section_15/reactNative.md)
-* [Build ReactNative on docker](Block_REACT/section_16/ReactNativedocker.md)
--->
+* [Reactnative consumes JSON API](Block_REACT/section_13/reactNative.md)
+* [Build ReactNative on docker](Block_REACT/section_14/ReactNativedocker.md)
