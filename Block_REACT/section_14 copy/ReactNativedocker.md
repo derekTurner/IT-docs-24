@@ -1,52 +1,67 @@
 ## Running in EXPO
 
-Expo will run on a node system within a docker container.  This includes all that is needed to support development (like a local snack) and a command line interpreter CLI which can be used to build the final product.
+In order to build an app from a snack, Expo provides a command line interpreter.  This can be run locally under node, but it will generate many node modules which are a nuisance to delete.  One way to remove unwanted node modules is to edit package.json to emptiness and then let npm update the project, but this is a work around.  
+
+In the next section the docker development facility is considered.  The aim is to set up the expo CLI without the need for a local node environment.
 
 
 ## Docker and Expo
 
-To start off you can use github desktop to add a new repository, which I have named "native" and to publish this publically available on a github repository.
+The developer environment can use an existing image and code placed on gitHub to create a volume which can be kept in synchronisation with gitHub by using git within visual studio.
 
-Ensure that docker is running but note that no containers are currently running.
+The system should use the code on gitHub as a guide to install  its best guess environment out of the box.  To do this it can take advantage of the json package file to determine dependancies.  There is also the possibility of leaving information in a *.docker* folder on github which will inform the creation of the environment.  This might include docker files and docker compose files, but for now the simplest approach is to include a file as config.json in this folder.  Within this config file the image on which the development environment willl be based can be indicated.
 
-Now I am going to open this into visual studio code and prepare an environment in a container.The developer environment can use an existing image and code placed on gitHub to create a volume which can be kept in synchronisation with gitHub by using git within visual studio or github desktop.
+In the usual way create a github repository named expo and add to it the .docker/config.json
 
-Open the empty "native" repository folder on visual studio code.
+```javascript
+{
+    "image": "node"
+}
+```
+Also add to this repository the files downloaded from expo which describe the app.
 
-> CTRL + SHIFT + P
-
-Navigate and select the required folder, "native".
-
-Select "add configuration to the workspace"
-
-Show all templates and select node and typescript.
-
-This time I will select node version 2022 which will enter long term support Octover 2024.
-
-When asked for additional features I note that the expo cli is available: I tried selecting this but it loaded an old version which was not compatible with node 22 so choose none I will leave this for later.
-
-![expo CLI](images/epocli.png)
-
-Press return and continue through the default selections to get the container downloading.
+![expo plus docker ](expofiles.webp)
 
 
-......
 
-The file list will initially be quite sparse.
+If files are subsequenly edited locally they can be committed and uploaded to keep the git repository up to date.
 
-![file list](images/filelist.png)
+When installation is complete the starter files can be set up on gitHub.  Firstly,on github I log in and create a cloud repository named expo with a gitingore file for node.
 
-The container is running in the background.
+![exporepository](exporepository.webp)
 
-![container](images/container.png)
+Now I can use github desktop to add the expo app files and docker file to this github directory.
+
+![github expo and docker files](githubexpo.png) 
+
+I now have the starter filed for the dev environment I can create a new environment in docker desktop pointing to this repository.
+
+![name repository](nameexpo.png)
+
+As the environment is made progress can be viewed and the base image can be seen to be loaded.
+
+![pulling base image](pullingbaseimage.png)
+
+Finally the environment is shown running.
+
+![running environment](runningdev.png)
+
+
+The running container environment can be started and stopped from within docker desktop's dashboard and can also be opened into its own visual studio code window from here.
+
+The first view of VSC shows the code cloned into a folder named com.docker.devenvironments.code.  The terminal view confirms that this is a node environment.
+
+![vscfirstview](vscfirstview.png)
 
 To check that node is working enter into the terminal shell:
 
 > node --version
 
 ```code
-v22.2.0
+v18.10.0
 ```
+
+# install expo CLI
 
 At this point, the bash shell within visual studio code is running as user node and does not have root priveledges to create a directory to load the node modules for expo.  This is a security feature.  
 
@@ -58,7 +73,64 @@ to confirm:
 node
 ```
 
+However a work around is available.
 
+Close the visual studio code view of the development container and in powershell open a bash shell as the root user.
+
+Check the running container for expo (yours will be differently named).
+
+> docker exec -u 0 -it ecstatic_fermi bash
+
+To check this is the root type 
+
+> whoami
+
+to confirm:
+
+```code
+root
+```
+
+Now as the root user install the expo command line.
+
+> npm install expo-cli --global 
+
+```code
+root@0ff82547b16b:/# npm install expo-cli --global --no-optional
+npm WARN config optional Use `--omit=optional` to exclude optional dependencies, or
+npm WARN config `--include=optional` to include them.
+npm WARN config
+npm WARN config     Default value does install optional deps unless otherwise omitted.
+npm WARN EBADENGINE Unsupported engine {
+npm WARN EBADENGINE   package: 'expo-cli@6.0.6',
+npm WARN EBADENGINE   required: { node: '>=12 <=16' },
+npm WARN EBADENGINE   current: { node: 'v18.10.0', npm: '8.19.2' }
+npm WARN EBADENGINE }
+npm WARN deprecated urix@0.1.0: Please see https://github.com/lydell/urix#deprecated
+npm WARN deprecated source-map-url@0.4.1: See https://github.com/lydell/source-map-url#deprecated
+npm WARN deprecated resolve-url@0.2.1: https://github.com/lydell/resolve-url#deprecated
+npm WARN deprecated source-map-resolve@0.5.3: See https://github.com/lydell/source-map-resolve#deprecated
+npm WARN deprecated uuid@3.4.0: Please upgrade  to version 7 or higher.  Older versions may use Math.random() in certain circumstances, which is known to be problematic.  See https://v8.dev/blog/math-random for details.
+npm WARN deprecated uuid@3.4.0: Please upgrade  to version 7 or higher.  Older versions may use Math.random() in certain circumstances, which is known to be problematic.  See https://v8.dev/blog/math-random for details.
+npm WARN deprecated querystring@0.2.0: The querystring API is considered Legacy. new code should use the URLSearchParams API instead.
+npm WARN deprecated chokidar@2.1.8: Chokidar 2 does not receive security updates since 2019. Upgrade to chokidar 3 with 15x fewer dependencies
+npm WARN deprecated stable@0.1.8: Modern JS already guarantees Array#sort() is a stable sort, so this library is deprecated. See the compatibility table on MDN: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort#browser_compatibility
+npm WARN deprecated svgo@1.3.2: This SVGO version is no longer supported. Upgrade to v2.x.x.
+npm WARN deprecated uuid@3.4.0: Please upgrade  to version 7 or higher.  Older versions may use Math.random() in certain circumstances, which is known to be problematic.  See https://v8.dev/blog/math-random for details.
+npm WARN deprecated uuid@3.4.0: Please upgrade  to version 7 or higher.  Older versions may use Math.random() in certain circumstances, which is known to be problematic.  See https://v8.dev/blog/math-random for details.
+npm WARN deprecated uuid@3.4.0: Please upgrade  to version 7 or higher.  Older versions may use Math.random() in certain circumstances, which is known to be problematic.  See https://v8.dev/blog/math-random for details.
+npm WARN deprecated uuid@3.4.0: Please upgrade  to version 7 or higher.  Older versions may use Math.random() in certain circumstances, which is known to be problematic.  See https://v8.dev/blog/math-random for details.
+npm WARN deprecated chokidar@2.1.8: Chokidar 2 does not receive security updates since 2019. Upgrade to chokidar 3 with 15x fewer dependencies
+
+added 1696 packages, and audited 1697 packages in 59s
+
+127 packages are looking for funding
+  run `npm fund` for details
+
+24 vulnerabilities (6 moderate, 15 high, 3 critical)
+
+To address all issues (including breaking changes), run:
+  npm audit fix --force
 
 Run `npm audit` for details.
 ```
@@ -68,16 +140,17 @@ To check this has worked (still in the powershell as root)
 > expo --version
 
 ```code
-WARNING: The legacy expo-cli does not support Node +17. Migrate to the new local Expo CLI: https://blog.expo.dev/the-new-expo-cli-f4250d8e3421.
-(node:2487) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
-(Use `node --trace-deprecation ...` to show where the warning was created)
-6.3.10
+WARNING: expo-cli has not yet been tested against Node.js v18.10.0.
+If you encounter any issues, please report them to https://github.com/expo/expo-cli/issues
+
+expo-cli supports following Node.js versions:
+* >=12.13.0 <15.0.0 (Maintenance LTS)
+* >=16.0.0 <17.0.0 (Active LTS)
+
+6.0.6
 ```
 
-Ok this is showing that VSC did not load an up to date version of the CLI so we will need to edit this manually.
-
-
-> npm i expo
+Lets' hope that this will be ok with our node version!
 
 
 Check that yarn is installed
