@@ -21,7 +21,7 @@ Select "add configuration to the workspace"
 
 Show all templates and select node and typescript.
 
-This time I will select node version 2022 which will enter long term support Octover 2024.
+This time I will select node version 2022 which will enter long term support October 2024.
 
 When asked for additional features I note that the expo cli is available: I tried selecting this but it loaded an old version which was not compatible with node 22 so choose none I will leave this for later.
 
@@ -48,33 +48,7 @@ To check that node is working enter into the terminal shell:
 v22.2.0
 ```
 
-At this point, the bash shell within visual studio code is running as user node and does not have root priveledges to create a directory to load the node modules for expo.  This is a security feature.  
-
-> whoami
-
-to confirm:
-
-```code
-node
-```
-
-
-
-Run `npm audit` for details.
-```
-
-To check this has worked (still in the powershell as root)
-
-> expo --version
-
-```code
-WARNING: The legacy expo-cli does not support Node +17. Migrate to the new local Expo CLI: https://blog.expo.dev/the-new-expo-cli-f4250d8e3421.
-(node:2487) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
-(Use `node --trace-deprecation ...` to show where the warning was created)
-6.3.10
-```
-
-Ok this is showing that VSC did not load an up to date version of the CLI so we will need to edit this manually.
+Install expo.
 
 
 > npm i expo
@@ -87,45 +61,18 @@ Check that yarn is installed
 ```code
 1.22.19
 ```
-So no need to try to install this.
 
-Exit from the root user
-
-> exit
-
-and close powershell.
-
-Return to the VScode remote container.
-
-It seems that all the depependancies are in place now.  The state of package.json indecates the dependancies which have been met.
+It seems that all the depependancies are in place now.  The state of package.json indicates the dependancies which have been met.
 
 ```json
 {
-  "main": "node_modules/expo/AppEntry.js",
-  "scripts": {
-    "start": "expo start",
-    "android": "expo start --android",
-    "ios": "expo start --ios",
-    "web": "expo start --web"
-  },
   "dependencies": {
-    "expo": "~46.0.13",
-    "expo-status-bar": "~1.4.0",
-    "react": "18.0.0",
-    "react-native": "0.69.6",
-    "react-native-paper": "4.9.2",
-    "expo-constants": "~13.2.4"
-  },
-  "devDependencies": {
-    "@babel/core": "^7.12.9"
-  },
-  "private": true
+    "expo": "^51.0.38"
+  }
 }
 ```
 
 # Building the project
-
-Return to the visual studio code terminal view now running as user node.
 
 Can the project be built now?  In the development environment bash shell:
 
