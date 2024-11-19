@@ -1,6 +1,10 @@
 # Database
 
-The first step is ot set up a database which we will then interact with via an API.  The database will use a free cluster MongoDBAtlas which can be manipulated by a desktop application compass.
+For development purposes it is preferable to use a local database.  However for production purposes it is better to use a cloud database.  In this section we will set up a database in the cloud.  However this process will not work while you are operating behind a firewall.
+
+## Atlas Cluster
+
+This section looks at setting up a free cluster MongoDBAtlas.  This can be connected to the library app which is being developed by altering the connection string.  The database contents can also be viewed and managed in a browser when you are logged into your online account.  The database can also be created and manipulated using the downloaded program, compass.
 
 Download [compass](https://www.mongodb.com/try/download/atlascli) for windows users download [here](https://downloads.mongodb.com/compass/mongodb-compass-1.39.2-win32-x64.exe).  Run the exe to install to your machine and then run the application.
 
