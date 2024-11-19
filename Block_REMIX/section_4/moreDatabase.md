@@ -12,7 +12,7 @@ Check that the container starts in docker desktop.
 
 ## Before Starting
 
-**The instructions to get started with remix are online, but if you run these directly they will not install all the latest versions, so read through the process without following these steps, and then we will take a shortcut.**
+**The instructions to get started with remix are [online](https://remix.run/docs/en/main/start/quickstart), but if you run these directly they will not install all the latest versions, so read through the process without following these steps, and then we will take a shortcut.**
 
 ## Implementing models
 
@@ -32,6 +32,8 @@ The virtuals are added to the schema using the get method.
 Finally the model is exported.
 
 The pattern is followed for each of the models so pouplate the models folder with the following files:
+
+### Author
 
 **author.ts**
 ```javascript
@@ -121,6 +123,8 @@ export default Author;
 
 And also:
 
+### Genre
+
 **genre.ts**
 ```javascript
 import {Schema, model} from 'mongoose';
@@ -153,6 +157,8 @@ const Genre = model<IGenre>('Genre', GenreSchema);
 export default Genre;
 ```
 And also:
+
+### Book
 
 **book.ts**
 ```javascript
@@ -197,6 +203,8 @@ const Book = model<IBook>('Book', BookSchema);
 export default Book;
 ```
 And also:
+
+### BookInstance
 
 **bookinstance.ts**
 ```javascript
@@ -254,6 +262,8 @@ export default BookInstance;
 In the roots folder files need to be created with names which match the routes which were created as links in the app.tsx file.  These files will be used to define the routes for the application.
 
 The first file to be created is the **_index.tsx** file.  This file will be used to define the route when the application is called without a specific route. Note the filename has a leading underscore.  This is a convention used by React to indicate that the file is a private file.
+
+### Index route
 
 **_index.tsx**
 ```javascript
@@ -321,6 +331,8 @@ Connected to Mongodb Database
 Now the home page is running the application needs to be updated to include the routes for the application and the commented out array elements can be brought back. 
 
 Populate the following route files with the following code.
+
+### Catalog route
 
 **catalog._index.tsx**
 ```javascript
@@ -411,6 +423,7 @@ export default function Catalog() {
 }
 ```
 and also:
+### Author route
 
 **catalog.authors.tsx**
 ```javascript
@@ -477,6 +490,8 @@ export default function Catalog() {
 ```
 and also:
 
+### Genre route
+
 **catalog.genres.tsx**
 ```javascript
 import Card from 'react-bootstrap/Card';
@@ -533,6 +548,8 @@ export default function Catalog() {
 }
 ```
 and also:
+
+### Book route
 
 **catalog.books.tsx**
 ```javascript
@@ -608,6 +625,8 @@ export default function Catalog() {
 }
 ```
 and also:
+
+### BookInstance route
 
 **catalog.bookinstances.tsx**
 ```javascript
@@ -690,7 +709,7 @@ The application may need to start a couple of times as you run through this as t
 
 ![books](./images/books.png)
 
-The first level of the menu should work and the details links will not work yet.
+The first level of the menu should work and the details links will not work yet.  These will be covered in the next section.
 
 
 
