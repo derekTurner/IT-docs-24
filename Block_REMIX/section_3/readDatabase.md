@@ -12,7 +12,7 @@ Check that the container starts in docker desktop.
 
 ## Before Starting
 
-**The instructions to get started with remix are online, but if you run these directly they will not install all the latest versions, so read through the process without following these steps, and then we will take a shortcut.**
+**The instructions to [get started with remix](https://remix.run/docs/en/main/start/quickstart) are online, but if you run these directly they will not install all the latest versions, so read through the process without following the steps, and then we will take a shortcut.**
 
 ## Getting Started
 
@@ -24,9 +24,15 @@ When the seeding has completed you can close the server.
 
 > CTRL + C
 
-Within the root folder of the project. create a new folder named library24 and within this add the following files:
+Within the root folder of the project. create a new folder named library24.
 
-### configuration files
+Through the next sections the folder will be populated with the files which make up the application.
+
+![library24 folder](./images/library24.png)
+
+
+
+### vite configuration file
 
 Add a configuration file for vite.
 
@@ -75,6 +81,8 @@ The exported function "defineConfig" is the configuration for vite includes a li
 4. svgLoader - this allows the use of svg files in the project.
 
 The server section of the configuration is used to allow the server to serve files from the app folder.
+
+### typescript configuration file
 
 Next create a new file named "tsconfig.json" in the root folder of the project.
 
@@ -203,7 +211,95 @@ The constand "viteDevServer" is used to check if the project is in development m
 
 The constant "app" is the express app that is used to handle the requests.  This uses express to serve the files.
 
-## utility files
+### package.json
+
+The package.json file is used to store the dependencies for the project.  This is used to install the dependencies for the project.
+
+The package json here includes current dependencies and some which will be used at a later stage.
+
+The "scripts" section is used to store the scripts that are used to run the project.  This includes the scripts for starting the project, building the project, and running the tests.
+
+```json
+{
+  "name": "library24",
+  "private": true,
+  "sideEffects": false,
+  "type": "module",
+  "scripts": {
+    "dev": "remix vite:dev --host",
+    "build": "remix vite:build",
+    "start": "remix-serve ./build/server/index.js",
+    "lint": "eslint --ignore-path .gitignore --cache --cache-location ./node_modules/.cache/eslint .",
+    "typecheck": "tsc"
+  },
+  "dependencies": {
+    "@popperjs/core": "^2.11.8",
+    "@remix-run/express": "^2.13.0",
+    "@remix-run/node": "^2.13.1",
+    "@remix-run/react": "^2.13.1",
+    "@remix-run/serve": "^2.13.1",
+    "@remix-validated-form/with-zod": "^2.0.7",
+    "@rvf/remix": "^6.0.0",
+    "@rvf/zod": "^6.0.0",
+    "@types/mongoose": "^5.11.97",
+    "@vitejs/plugin-react": "^4.2.1",
+    "bootstrap": "^5.3.3",
+    "compression": "^1.7.4",
+    "dotenv": "^16.4.5",
+    "express": "^4.18.2",
+    "isbot": "^4.4.0",
+    "luxon": "^3.4.4",
+    "match-sorter": "^6.3.1",
+    "mongodb": "^6.5.0",
+    "mongoose": "^8.2.2",
+    "morgan": "^1.10.0",
+    "react": "^18.2.0",
+    "react-bootstrap": "^2.10.2",
+    "react-dom": "^18.2.0",
+    "sort-by": "^0.0.2",
+    "tiny-invariant": "^1.3.1",
+    "zod": "^3.23.4",
+    "zod-form-data": "^2.0.2"
+  },
+  "devDependencies": {
+    "@remix-run/dev": "^2.13.1",
+    "@types/compression": "^1.7.5",
+    "@types/express": "^4.17.20",
+    "@types/morgan": "^1.9.9",
+    "@types/react": "^18.2.20",
+    "@types/react-dom": "^18.2.7",
+    "@typescript-eslint/eslint-plugin": "^8.10.0",
+    "@typescript-eslint/parser": "^8.10.0",
+    "cross-env": "^7.0.3",
+    "eslint": "^9.13.0",
+    "eslint-import-resolver-typescript": "^3.6.1",
+    "eslint-plugin-import": "^2.28.1",
+    "eslint-plugin-jsx-a11y": "^6.7.1",
+    "eslint-plugin-react": "^7.33.2",
+    "eslint-plugin-react-hooks": "^5.0.0",
+    "typescript": "^5.1.6",
+    "vite": "^5.1.6",
+    "vite-svg-loader": "^5.1.0",
+    "vite-tsconfig-paths": "^4.2.1"
+  },
+  "engines": {
+    "node": ">=20.18.0"
+  },
+  "description": "📖 See the [Remix docs](https://remix.run/docs) and the [Remix Vite docs](https://remix.run/docs/en/main/future/vite) for details on supported features.",
+  "version": "1.0.0",
+  "main": "server.js",
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
+```
+
+The package-locl.json file will be gererated when the files are installed.
+
+> npm install
+
+
+### github utility file
 
 Add a ".gitnore" file with simple contents:
 
@@ -217,6 +313,8 @@ node_modules
 ```
 This file is used to tell git to ignore the files in the folder.  This is used to prevent the files from being uploaded to github.In particular the ,env file is used to store the environment variables for the project which will include the database connection string (with password).  This file is not added to git because it contains sensitive information.
 
+### .env file
+
 Add the ".env" file with the following contents:
 
 **.env**
@@ -224,6 +322,8 @@ Add the ".env" file with the following contents:
 DB_STRING=mongodb://host.docker.internal:27017/local_library
 ```
 This is the connection string for the local database.  This can be swapped out for a cloud based database when the project is deployed.
+
+### Linting configuration
 
 Add a ".eslintrc.cjs" file with the following contents:
 **.eslintrc.cjs**
@@ -314,7 +414,7 @@ module.exports = {
 ```
 This is the [eslint(https://typescript-eslint.io/)] configuration file.  This is used to configure the eslint rules for the project.  This is used to ensure that the code is consistent and follows the best practices.
 
-### Folder Structure
+## Folder Structure
 
 Now add the following folders to the library24 folder:
 - app
@@ -324,10 +424,15 @@ Now add the following folders to the library24 folder:
 The app folder will contain the code for the application.  This could have been created by running a command in the terminal to invoke a template, but by adding it manually you ensure that the version is the same as the one used in the tutorial.
 
 In the app folder add the following folders:
--.server
+
+- .server
 - components
 - models
 - routes
+
+
+### Server Folder
+
 
 To the **".server"** folder add the following file:
 
@@ -339,33 +444,49 @@ To the **".server"** folder add the following file:
 
 This is an empty file in the structure suggested by remix.  Although it is not being use there is a [web authentication](https://remix.run/resources/remix-auth-webauthn-strategy) strategy within the remix framework.  But I will not discuss this here.
 
+### Components Folder
+
 The **components** folder can be left empty for now.  It will be used to store the components for the application.
+
+### Models Folder
 
 The **models** folder will contain the models for the application.  This will be used to define the schema for the database and as such should reflect the schema which was created in the previous section when the database was seeded.
 
+
 Create the following empty files in the models folder (these will be populated later):
-    **author.ts**
-    **book.ts**
-    **bookinstance.ts**
-    **genre.ts**
+
+* **author.ts**
+* **book.ts**
+* **bookinstance.ts**
+* **genre.ts**
+
+### Routes Folder
 
 Create the following empty files in the **routes** folder (these will be populated later):
-    **_index.tsx**
-    **catalog._index.tsx**
-    **catalog.authors.tsx**
-    **catalog.books.tsx**
-    **catalog.genres.tsx**
-    **catalog.instances.tsx**
+
+* **_index.tsx**
+* **catalog._index.tsx**
+* **catalog.authors.tsx**
+* **catalog.books.tsx**
+* **catalog.genres.tsx**
+* **catalog.instances.tsx**
+
+### Controllers Folder
 
 In the **controllers** folder create the following empty files (these will be populated later):
-    **authorController.ts**
-    **bookController.ts**
-    **bookInstanceController.ts**
-    **genreController.ts**
 
-### key files in the app folder
+* **authorController.ts**
+* **bookController.ts**
+* **bookInstanceController.ts**
+* **genreController.ts**
+
+## Key files in the app folder
 
 The following files should be added to the app folder to provide the basic structure and functionality for the application.
+
+### Root component
+
+This is the root component for the application.  It is the first component that is rendered when the application is loaded. 
 
 **root.tsx**
 
@@ -463,7 +584,7 @@ export default function App() {
   );
 }
 ```
-This is the root component for the application.  It is the first component that is rendered when the application is loaded. 
+
 
 At the top of the file the required resources are imported.  These include the react-bootstrap components, the Remix components, the Remix meta function, and the app stylesheet.
 
@@ -528,8 +649,20 @@ export default function App() {
 
   ]
  ``` 
+Notice that the links which are provided in an array match the routes that are provided in the **app/routes** folder, where the naming convention is that an underscore denotes a privat file and the ```.``` stands in place of ```/```.  The route files do not occupy a nested file structure in the way that the array of routes might suggest/.
 
- The **App** function returns the jsx for the application.  The jsx is built using the react-bootstrap components.  
+The route files which mach the array are as follows:
+  
+*  **_index.tsx**
+*  **catalog._index.tsx**
+*  **catalog.authors.tsx**
+*  **catalog.books.tsx**
+*  **catalog.genres.tsx**
+*  **catalog.instances.tsx**
+
+The file conventions for the route file naming ar described in the [Remix documentation](https://remix.run/docs/en/v1/guides/routing#index-routes).
+
+ The **App()** function returns the jsx for the application.  The jsx is built using the react-bootstrap components.  
     The **Container** component is used to provide a fluid layout for the application.  
     The **Row** component is used to separate areas for links and responss display.  
     The **Col** component is used with bootstrap sizing to control the responsive break points of the layout.  
@@ -592,7 +725,10 @@ The **Outlet** component is used to provide a target for the output to be render
 }
 ```
 
-The two filed entry.client .tsx and entry.server.tsx are used to provide the entry points for the application.  The entry.client.tsx file is used to provide the client side functionality for the application.  The entry.server.tsx file is used to provide the server side functionality for the application.  This ensures that code which is only required on the server side (and may include passwords and sensitive data) is not included in the client side code.
+
+### Client and Server Entry Points
+
+The two files entry.client .tsx and entry.server.tsx are used to provide the entry points for the application.  The entry.client.tsx file is used to provide the client side functionality for the application.  The entry.server.tsx file is used to provide the server side functionality for the application.  This ensures that code which is only required on the server side (and may include passwords and sensitive data) is not included in the client side code.
 
 These two files are standard Remix files and do not require any modification.  Add them to the project.
 
@@ -761,6 +897,8 @@ db(); // connection to database
 ```
  Note that the entry.server.tsx file is used to connect to the database.
 
+### Reading the environment variables
+
  The details of the constant function db are in the file **db.ts** which is the next file to be created.
 
  **db.ts**
@@ -790,9 +928,11 @@ The connection string is loaded from the .env file.
 The connection to the database is asynchronous and returns a promise.  The [async/await](https://www.w3schools.com/js/js_async.asp) syntax is used to handle the promise.
 A console.log statement is used to print the connection string to the console for debugging purposes and to check that the connection string is loaded from the .env file. This should be removed before deployment.
 
-The inal file needed is the **app.tsx** file  supports the appearance of the application.
+### Stylesheet
 
-**app.tsx**
+The inal file needed is the **app.css** file  supports the appearance of the application.
+
+**app.css**
 ```javascript
 
 html {
