@@ -19,7 +19,7 @@ Check that the container starts in docker desktop.
 In the models folder the files must be populated with the schema for the database.
 This will include author. book, bookinstance and genre.
 
-For each of these files the imports from mongoose must be added.  There is also a date funcioning type which  is using the [luxon](https://www.npmjs.com/package/luxon) package.
+For each of these files the imports from mongoose must be added.  There is also a date formatting type which  is using the [luxon](https://www.npmjs.com/package/luxon) package.
 
 Each model file will export an interface which will include not only the schema but also the virtuals.  These are formatted items which are created from the schema.  For example a name could be fornmed from the family _name and the first_name.
 
@@ -265,7 +265,7 @@ The first file to be created is the **_index.tsx** file.  This file will be used
 
 ### Index route
 
-**_index.tsx**
+**routes/_index.tsx**
 ```javascript
 export default function Index() {
     return (
@@ -334,7 +334,7 @@ Populate the following route files with the following code.
 
 ### Catalog route
 
-**catalog._index.tsx**
+**routes/catalog._index.tsx**
 ```javascript
 //import type { ActionFunctionArgs, LoaderFunctionArgs } from "@remix-run/node";//
 //import type { FunctionComponent } from "react";
@@ -422,13 +422,14 @@ export default function Catalog() {
   );
 }
 ```
-and also:
+The route file includes the loader function which is used to fetch the data from the database using appropriate mongoose commands.  In this case the query [contDocuments](https://mongoosejs.com/docs/api/query.html#Query.prototype.countDocuments()) is used to count items in the documents.  A filter {status:"Available"} is used to limit the counts to to show the book count available for loan. A default function is returned by the router.  In this case this is named "Catalog()". When this function is called the loader function is executed and the data is returned to the function.  The data is then displayed in the function. In this case with a card component from bootstrap.
+
+The next route is for the author:
+
 ### Author route
 
-**catalog.authors.tsx**
+**routes/catalog.authors.tsx**
 ```javascript
-
-
 import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup';
 
@@ -436,12 +437,7 @@ import { json } from "@remix-run/node";
 
 import { useLoaderData, Link } from "@remix-run/react";
 
-
-
 import Author, { IAuthor } from '../models/author';
-
-
-
 
 
 export const loader: unknown = async () => {
@@ -456,7 +452,6 @@ export const loader: unknown = async () => {
 
   return json({ authors });
 };
-
 
 
 export default function Catalog() {
@@ -488,11 +483,15 @@ export default function Catalog() {
   );
 }
 ```
+
+The loader function is used to fetch the data from the database using appropriate mongoose commands.  In this case the query [find](https://mongoosejs.com/docs/api/query.html#Query.prototype.find()) is used to find the documents.  A sort is used to sort the documents.  A default function is returned by the router.  In this case, again, this is named "Catalog()". When the Catalog() function is called the loader function is executed and the data is returned to the function.  The data is then displayed in the function. In this case with a card component from bootstrap.
+
+
 and also:
 
 ### Genre route
 
-**catalog.genres.tsx**
+**routes/catalog.genres.tsx**
 ```javascript
 import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup';
@@ -500,8 +499,6 @@ import ListGroup from 'react-bootstrap/ListGroup';
 import { json } from "@remix-run/node";
 
 import { useLoaderData, Link } from "@remix-run/react";
-
-
 
 import Genre, { IGenre } from '../models/genre';
 
@@ -547,11 +544,14 @@ export default function Catalog() {
   );
 }
 ```
+
+The pattern of loader function and action function is used for all routes.  This is a good pattern to use as it allows the data retrieval and display to be combined in a single module file.  Some other frameworks use a separate module for the data retrieval and a separate module for the display.
+
 and also:
 
 ### Book route
 
-**catalog.books.tsx**
+**routes/catalog.books.tsx**
 ```javascript
 import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup';
@@ -560,9 +560,7 @@ import { json } from "@remix-run/node";
 
 import { useLoaderData, Link} from "@remix-run/react";
 
-
 import Book, { IBook } from '../models/book';
-
 
 export const loader: unknown = async () => {
 
@@ -628,7 +626,7 @@ and also:
 
 ### BookInstance route
 
-**catalog.bookinstances.tsx**
+**routes/catalog.bookinstances.tsx**
 ```javascript
 import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup';
@@ -697,6 +695,8 @@ Then in root.tsx uncomment the retrieve array.
   ]
 ```
 
+Note again the naming convention of the route file.  The route file name is not the same as the url!
+
 Restart the vite server and test the application at this stage.
 
 The application may need to start a couple of times as you run through this as the model compiles.  Restart if you see messages like:
@@ -704,6 +704,9 @@ The application may need to start a couple of times as you run through this as t
 ```bash
 [vite] Internal server error: Cannot overwrite `BookInstance` model once compiled.
 ```
+
+This is because the model is compiled and the model is not recompiled when you make changes to the model.  
+
 > CTRL + C
 > npm run dev
 
