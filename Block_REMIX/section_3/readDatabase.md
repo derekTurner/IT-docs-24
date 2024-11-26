@@ -207,7 +207,7 @@ This uses:
     [morgan](https://www.npmjs.com/package/morgan) which is a logging middleware for express.
     [compression](https://www.npmjs.com/package/compression) which is a middleware for express that compresses the response body.
 
-The constand "viteDevServer" is used to check if the project is in development mode.  If it is in development mode then the vite server is used to serve the files.  If it is not in development mode then the files are served from the build folder.
+The constant "viteDevServer" is used to check if the project is in development mode.  If it is in development mode then the vite server is used to serve the files.  If it is not in development mode then the files are served from the build folder.
 
 The constant "app" is the express app that is used to handle the requests.  This uses express to serve the files.
 
@@ -412,13 +412,12 @@ module.exports = {
   ],
 };
 ```
-This is the [eslint(https://typescript-eslint.io/)] configuration file.  This is used to configure the eslint rules for the project.  This is used to ensure that the code is consistent and follows the best practices.
+This is the [eslint](https://typescript-eslint.io/) configuration file.  This is used to configure the eslint rules for the project.  This is used to ensure that the code is consistent and follows the best practices.
 
 ## Folder Structure
 
 Now add the following folders to the library24 folder:
 - app
-- controllers
 - public
 
 The app folder will contain the code for the application.  This could have been created by running a command in the terminal to invoke a template, but by adding it manually you ensure that the version is the same as the one used in the tutorial.
@@ -471,14 +470,6 @@ Create the following empty files in the **routes** folder (these will be populat
 * **catalog.genres.tsx**
 * **catalog.instances.tsx**
 
-### Controllers Folder
-
-In the **controllers** folder create the following empty files (these will be populated later):
-
-* **authorController.ts**
-* **bookController.ts**
-* **bookInstanceController.ts**
-* **genreController.ts**
 
 ## Key files in the app folder
 
@@ -734,17 +725,26 @@ These two files are standard Remix files and do not require any modification.  A
 
 **entry.client.tsx**
 ```javascript
-            <Col >
-              <Outlet />
-              <ScrollRestoration />
-              <Scripts />
-            </Col>
-          </Row>
-        </Container>
-      </body>
-    </html>
+/**
+ * By default, Remix will handle hydrating your app on the client for you.
+ * You are free to delete this file if you'd like to, but if you ever want it revealed again, you can run `npx remix reveal` ✨
+ * For more information, see https://remix.run/file-conventions/entry.client
+ */
+
+import { RemixBrowser } from "@remix-run/react";
+import { startTransition, StrictMode } from "react";
+import { hydrateRoot } from "react-dom/client";
+import "bootstrap/dist/css/bootstrap.min.css"; 
+
+startTransition(() => {
+  hydrateRoot(
+    document,
+    <StrictMode>
+      <RemixBrowser />
+    </StrictMode>
   );
-}
+});
+
 ```
 
 And also:

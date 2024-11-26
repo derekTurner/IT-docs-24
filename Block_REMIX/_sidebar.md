@@ -6,6 +6,9 @@
 * <!-- week 9 -->
 * [Setup remix project](Block_REMIX/section_3/readDatabase.md)
 * [Read Database](Block_REMIX/section_4/moreDatabase.md)
+* <!-- week 10 -->
+* [Item Details](Block_REMIX/section_5/details.md)
+* [Item Create](Block_REMIX/section_6/create.md)
 
 
 <!-- docs/_sidebar.md 
